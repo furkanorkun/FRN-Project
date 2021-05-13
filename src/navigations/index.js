@@ -1,14 +1,17 @@
 // This file to exporting default navigation container
-import React from 'react';
-import {Text, SafeAreaView, StatusBar} from 'react-native';
+//With the useContext Hook we can access state
+import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import AuthNavigator from './AuthNavigator';
-import HomeNavigator from './HomeNavigator';
 import DrawerNavigator from './DrawerNavigator';
+import {GlobalContext} from '../context/Provider';
 
 const AppNavContainer = () => {
-  const isLoggedIn = false;
+  const {
+    authState: {isLoggedIn},
+  } = useContext(GlobalContext);
+
   return (
     <NavigationContainer>
       {isLoggedIn ? <DrawerNavigator /> : <AuthNavigator />}
