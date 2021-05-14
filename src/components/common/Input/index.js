@@ -11,6 +11,7 @@ const Input = ({
   value,
   label,
   style,
+  //All other default TextInput needs sent with ...props
   ...props
 }) => {
   const [focused, setFocused] = React.useState(false);
@@ -50,6 +51,7 @@ const Input = ({
           onFocus={() => setFocused(true)}
           //Every time you get out of focus the input field, the event will trigger
           onBlur={() => setFocused(false)}
+          //You must add to the bottom ...props
           {...props}
         />
       </View>
