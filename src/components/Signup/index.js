@@ -8,7 +8,7 @@ import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
 import LOGIN from '../../screens/Login';
 
-const RegisterComponent = () => {
+const RegisterComponent = ({onSubmit, onChange, form, errors}) => {
   const {navigate} = useNavigation();
   return (
     <Container>
@@ -27,25 +27,37 @@ const RegisterComponent = () => {
             label="Username"
             iconPosition="left"
             placeholder="Enter Username"
-            //error="This field is required"
+            error={errors.userName}
+            onChangeText={value => {
+              onChange({name: 'userName', value});
+            }}
           />
           <Input
             label="First Name"
             iconPosition="left"
             placeholder="Enter First Name"
-            //error="This field is required"
+            error={errors.firstName}
+            onChangeText={value => {
+              onChange({name: 'firstName', value});
+            }}
           />
           <Input
             label="Last Name"
             iconPosition="left"
             placeholder="Enter Last Name"
-            //error="This field is required"
+            error={errors.lastName}
+            onChangeText={value => {
+              onChange({name: 'lastName', value});
+            }}
           />
           <Input
             label="Email"
             iconPosition="left"
             placeholder="Enter Email"
-            //error="This field is required"
+            error={errors.email}
+            onChangeText={value => {
+              onChange({name: 'email', value});
+            }}
           />
           <Input
             label="Password"
@@ -53,8 +65,12 @@ const RegisterComponent = () => {
             secureTextEntry={true}
             icon={<Text>Show</Text>}
             iconPosition="right"
+            onChangeText={value => {
+              onChange({name: 'password', value});
+            }}
+            error={errors.password}
           />
-          <CustomButton primary title="Click me" />
+          <CustomButton onPress={onSubmit} primary title="Click me" />
 
           <View style={styles.createSection}>
             <Text style={styles.infoText}>Already Have a Account?</Text>
